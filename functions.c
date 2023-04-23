@@ -9,7 +9,7 @@ int count(va_list args)
 {
 	va_list args_copy;
 	int n;
-	int j;
+	int j = 0;
 
 	va_copy(args_copy, args);
 	n = va_arg(args_copy, int);
