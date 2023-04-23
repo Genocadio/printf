@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdlib.h>
 /**
  * count - function that counts number of digits
  * @n: integer to count
@@ -37,16 +38,25 @@ int print_integer(va_list args)
 {
 	int arg = va_arg(args, int);
 	int n = arg;
-	int m = 0;
-	int len = count(arg);
-	char buffer[len];
-	int i = 0;
+	int digits = count(arg);
+	int sign = 0;
+	char *buffer;
+	int i;
+	int bytes_written;
 
 	if (n < 0)
 	{
-		buffer[i++] = '-';
+		sign = 1;
 		n = -n;
 	}
+
+	buffer = malloc(digits + sign + 1);
+	if (buffer == NULL)
+		return (-1);
+
+	i = 0;
+	if (sign)
+		buffer[i++] = '-';
 
 	while (n > 0)
 	{
@@ -56,13 +66,13 @@ int print_integer(va_list args)
 		n /= 10;
 		buffer[i++] = d + '0';
 	}
+	buffer[i] = '\0';
 
-	while (i > 0)
-	{
-		write(1, &buffer[--i], 1);
-	}
+	reverse_string(buffer, i);
 
-	return (len);
+	bytes_written = write(1, buffer, i);
+	free(buffer);
+	return (bytes_written);
 }
 /**
  * print_char - function to print char

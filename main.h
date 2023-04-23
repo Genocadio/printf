@@ -11,5 +11,6 @@ void print_char(va_list args, int *j);
 void print_string(va_list args, int *j);
 void print_percent(int *j);
 void print_percent(int *j);
+void reverse_string(char *str, int len);
 
 #endif
