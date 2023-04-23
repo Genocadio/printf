@@ -36,7 +36,7 @@ int _printf(const char *format, ...)
 						break;
 					}
 				default:
-					return('\0');
+					return(-1);
 			}
 		}
 		else
