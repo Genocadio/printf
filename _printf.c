@@ -32,7 +32,6 @@ void print_string(va_list args, int *j)
 		s++;
 		(*j)++;
 	}
-	j -= 1;
 }
 /**
  * print_percent - function to print percent
