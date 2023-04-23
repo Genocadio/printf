@@ -51,10 +51,10 @@ void print_percent(int *j)
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int j = 0;
+	int j;
 
 	va_start(args, format);
-	while (*format)
+	for (j = 0; *format; format++)
 	{
 		if (*format == '%')
 		{
@@ -86,7 +86,6 @@ int _printf(const char *format, ...)
 			write(1, format, 1);
 			j++;
 		}
-		format++;
 	}
 	va_end(args);
 	j -= 1;
