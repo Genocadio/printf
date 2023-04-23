@@ -10,10 +10,10 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int j;
+	int j = 0;
 
 	va_start(args, format);
-	for (j = 0; *format; format++)
+	while (*format)
 	{
 		if (*format == '%')
 		{
@@ -36,7 +36,7 @@ int _printf(const char *format, ...)
 						break;
 					}
 				default:
-					return (-1);
+					return;
 			}
 		}
 		else
@@ -44,6 +44,7 @@ int _printf(const char *format, ...)
 			write(1, format, 1);
 			j++;
 		}
+		format++;
 	}
 	va_end(args);
 	return (j);
