@@ -70,6 +70,13 @@ int _printf(const char *format, ...)
 				case '%':
 					print_percent(&j);
 					break;
+				case 'i':
+				case 'd':
+					{
+						print_int(args);
+						j += count(args);
+						break;
+					}
 				default:
 					return (-1);
 			}
