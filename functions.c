@@ -1,19 +1,15 @@
 #include "main.h"
 #include <stdarg.h>
+#include <unistd.h>
 /**
  * count - function that counts number of digits
- * @args: argument to _printf
+ * @n: integer to count
  * Return: number of digits in an int
  */
-int count(va_list args)
+int count(int n)
 {
-	va_list args_copy;
-	int n;
 	int j = 0;
 
-	va_copy(args_copy, args);
-	n = va_arg(args_copy, int);
-	va_end(args_copy);
 	if (n < 0)
 	{
 		j++;
@@ -33,16 +29,16 @@ int count(va_list args)
 	return (j);
 }
 /**
- * print_int - function to print integer
- * @args: argument  to _printf
- * Return:void
+ * print_integer - function that prints an integer argument
+ * @args: va_list containing the integer argument
+ * Return: number of characters printed
  */
-void print_int(va_list args)
+int print_integer(va_list args)
 {
-	int n;
+	int arg = va_arg(args, int);
+	int n = arg;
 	int m = 0;
 
-	n = va_arg(args, int);
 	if (n < 0)
 	{
 		_putchar('-');
@@ -65,4 +61,47 @@ void print_int(va_list args)
 		_putchar(z + '0');
 		m /= 10;
 	}
+	return (count(arg));
+}
+/**
+ * print_char - function to print char
+ * @args: argument to printf
+ * @j: number of printed charcters
+ * Return: void
+ */
+void print_char(va_list args, int *j)
+{
+	char c;
+
+	c = (char) va_arg(args, int);
+	write(1, &c, 1);
+	(*j)++;
+}
+/**
+ * print_string - function to print string
+ * @args: argument to printf
+ * @j: number of printed charcters
+ * Return: void
+ */
+void print_string(va_list args, int *j)
+{
+	char *s;
+
+	s = va_arg(args, char *);
+	while (*s)
+	{
+		write(1, s, 1);
+		s++;
+		(*j)++;
+	}
+}
+/**
+ * print_percent - function to print percent
+ * @j: number of printed charcters
+ * Return: void
+ */
+void print_percent(int *j)
+{
+	write(1, "%", 1);
+	(*j)++;
 }

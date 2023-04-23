@@ -1,48 +1,7 @@
 #include "main.h"
 #include <stdarg.h>
+#include <stdio.h>
 #include <unistd.h>
-/**
- * print_char - function to print char
- * @args: argument to printf
- * @j: number of printed charcters
- * Return: void
- */
-void print_char(va_list args, int *j)
-{
-	char c;
-
-	c = (char) va_arg(args, int);
-	write(1, &c, 1);
-	(*j)++;
-}
-/**
- * print_string - function to print string
- * @args: argument to printf
- * @j: number of printed charcters
- * Return: void
- */
-void print_string(va_list args, int *j)
-{
-	char *s;
-
-	s = va_arg(args, char *);
-	while (*s)
-	{
-		write(1, s, 1);
-		s++;
-		(*j)++;
-	}
-}
-/**
- * print_percent - function to print percent
- * @j: number of printed charcters
- * Return: void
- */
-void print_percent(int *j)
-{
-	write(1, "%", 1);
-	(*j)++;
-}
 /**
  * _printf - function that works like printf function
  * @format:  is a character string
@@ -73,8 +32,7 @@ int _printf(const char *format, ...)
 				case 'i':
 				case 'd':
 					{
-						print_int(args);
-						j += count(args);
+						j += print_integer(args);
 						break;
 					}
 				default:
@@ -88,5 +46,6 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(args);
+	printf("%d \n", j);
 	return (j);
 }
