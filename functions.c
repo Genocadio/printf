@@ -38,10 +38,13 @@ int print_integer(va_list args)
 	int arg = va_arg(args, int);
 	int n = arg;
 	int m = 0;
+	int len = count(arg);
+	char buffer[len];
+	int i = 0;
 
 	if (n < 0)
 	{
-		_putchar('-');
+		buffer[i++] = '-';
 		n = -n;
 	}
 
@@ -51,17 +54,15 @@ int print_integer(va_list args)
 
 		d = n % 10;
 		n /= 10;
-		m = m * 10 + d;
+		buffer[i++] = d + '0';
 	}
-	while (m != 0)
-	{
-		int z;
 
-		z = m % 10;
-		_putchar(z + '0');
-		m /= 10;
+	while (i > 0)
+	{
+		write(1, &buffer[--i], 1);
 	}
-	return (count(arg));
+
+	return (len);
 }
 /**
  * print_char - function to print char
