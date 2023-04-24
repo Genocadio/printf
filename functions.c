@@ -54,9 +54,9 @@ int print_integer(va_list args)
 	if (buffer == NULL)
 		return (-1);
 
-	i = 0;
+	i = sign;
 	if (sign)
-		buffer[i++] = '-';
+		buffer[0] = '-';
 
 	while (n > 0)
 	{
@@ -68,9 +68,12 @@ int print_integer(va_list args)
 	}
 	buffer[i] = '\0';
 
-	reverse_string(buffer, i);
+	reverse_string(buffer + sign, i - sign);
 
-	bytes_written = write(1, buffer, i);
+	if (sign)
+		bytes_written = write(1, buffer, digits);
+	else
+			bytes_written = write(1, buffer, digits + 1);
 	free(buffer);
 	return (bytes_written);
 }
