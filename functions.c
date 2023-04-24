@@ -96,19 +96,21 @@ void print_char(va_list args, int *j)
  */
 void print_string(va_list args, int *j)
 {
-	char *s;
-
-	s = va_arg(args, char *);
+	char *s = va_arg(args, char*);
+	int bytes_written;
+	int len = _strlen(s);
+	char *buffer = malloc(len + 1);
+    
 	if (s == NULL)
-	{
 		s = "(null)";
-	}
-	while (*s)
-	{
-		write(1, s, 1);
-		s++;
-		(*j)++;
-	}
+	if (buffer == NULL)
+		return;
+
+	_strcpy(buffer, s);
+
+	bytes_written = write(1, buffer, len);
+	if (bytes_written > 0)
+		*j += bytes_written;
 }
 /**
  * print_percent - function to print percent
