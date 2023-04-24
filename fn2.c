@@ -35,6 +35,7 @@ void reverse_string(char *str, int len)
 size_t _strlen(const char *s)
 {
 	const char *p = s;
+
 	while (*p != '\0')
 	{
 		p++;

@@ -100,7 +100,7 @@ void print_string(va_list args, int *j)
 	int bytes_written;
 	int len = _strlen(s);
 	char *buffer = malloc(len + 1);
-    
+
 	if (s == NULL)
 		s = "(null)";
 	if (buffer == NULL)
