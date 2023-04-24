@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <stdarg.h>
 #include "main.h"
 /**
@@ -13,7 +10,9 @@ int _printf(const char *format, ...)
 	selct func[] = {
 	{"c", print_char},
 	{"s", print_string},
-	{"%", print_percent}
+	{"%", print_percent},
+	{"d", print_int},
+	{"i", print_int}
 	};
 	va_list args;
 	int printed_chars;
@@ -74,5 +73,3 @@ int selector(const char *format, selct func[], va_list args)
 	}
 	return (printed_char);
 }
-
-
