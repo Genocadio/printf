@@ -49,15 +49,12 @@ int print_integer(va_list args)
 		sign = 1;
 		n = -n;
 	}
-
 	buffer = malloc(digits + sign + 1);
 	if (buffer == NULL)
 		return (-1);
-
 	i = sign;
 	if (sign)
 		buffer[0] = '-';
-
 	while (n > 0)
 	{
 		int d;
@@ -73,7 +70,10 @@ int print_integer(va_list args)
 	if (sign)
 		bytes_written = write(1, buffer, digits);
 	else
-			bytes_written = write(1, buffer, digits + 1);
+	{
+		write(1, buffer, digits);
+		bytes_written = digits;
+	}
 	free(buffer);
 	return (bytes_written);
 }
