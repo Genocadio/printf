@@ -13,7 +13,9 @@ int _printf(const char *format, ...)
 	{"%", print_percent},
 	{"d", print_int},
 	{"i", print_int},
-	{"b", print_binary}
+	{"b", print_binary},
+	{"u", unsigned_int},
+	{"o", print_octal},
 	};
 	va_list args;
 	int printed_chars;
