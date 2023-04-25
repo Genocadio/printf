@@ -12,7 +12,8 @@ int _printf(const char *format, ...)
 	{"s", print_string},
 	{"%", print_percent},
 	{"d", print_int},
-	{"i", print_int}
+	{"i", print_int},
+	{"b", print_binary}
 	};
 	va_list args;
 	int printed_chars;
