@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 /**
- * struct spcf - selct the collect function based on specifier
+ * struct spcf - select the collect function based on specifier
  * @spc: specifier provided
  * @f: function to use to print
  */
