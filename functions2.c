@@ -31,7 +31,7 @@ int print_binary(va_list args)
 }
 /**
  * unsigned_int - function to print unsigned int;
- * @args: argment to _printf
+ * @args: argument to _printf
  * Return: number of printed digits
  */
 int unsigned_int(va_list args)
