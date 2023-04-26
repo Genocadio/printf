@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
  * @format: is a character string
  * @func: structure with all possible functions
  * @args: arguments to printf
- * Return: number of printed charcters
+ * Return: number of printed characters
  */
 int selector(const char *format, selct func[], va_list args)
 {
